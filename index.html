@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela Colorida</title>
+    <style>
+        body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: black; flex-direction: column; }
+        button { margin: 10px; padding: 20px; font-size: 20px; cursor: pointer; border: none; }
+    </style>
+</head>
+<body>
+    <button class="btn-color" id="btn-yellow" onclick="changeColor('yellow')">Amarelo</button>
+    <button class="btn-color" id="btn-blue" onclick="changeColor('blue')">Azul</button>
+    <button class="btn-color" id="btn-green" onclick="changeColor('green')">Verde</button>
+    <button class="btn-color" id="btn-red" onclick="changeColor('red')">Vermelho</button>
+    <button id="btn-random" onclick="changeRandomColor()">Cor Aleatória</button>
+    <button id="" onclick="resetColor()">Resetar</button>
+    <button id="btn-select-color" onclick="selectColors()">Selecionar Cor</button>
+
+    <script>
+        hideButtons();
+
+        function changeColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+
+        function resetColor() {
+            hideButtons();
+            document.body.style.backgroundColor = 'black';
+            document.querySelectorAll('#btn-random, #btn-select-color').forEach(button => {
+                button.style.display = 'block';
+            });
+        }
+
+        function changeRandomColor() {
+            hideButtons();
+            const colors = ['yellow', 'blue', 'green', 'red'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            changeColor(randomColor);
+        }
+
+        function selectColors() {
+            showButtons();
+            document.querySelectorAll('#btn-random, #btn-select-color').forEach(button => {
+                button.style.display = 'none';
+            });
+        }
+
+        function showButtons() {
+            document.querySelectorAll('.btn-color').forEach(button => {
+                button.style.display = 'block';
+            });
+        }
+
+        function hideButtons() {
+            document.querySelectorAll('.btn-color').forEach(button => {
+                button.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
